@@ -39,7 +39,7 @@ import org.coury.jfilehelpers.events.AfterWriteRecordHandler;
  */
 public class EventsTest extends CallbacksBase {
 
-	public void testBeforeRead() {
+	public void testBeforeRead() throws IOException {
 		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
 		fileEngine.setBeforeReadRecordHandler(
 				new BeforeReadRecordHandler<Customer>() {
@@ -58,22 +58,19 @@ public class EventsTest extends CallbacksBase {
 						engineTester(engine);
 						incrementAfterReadCount();
 						if(e.getLineNumber() == 2) {
-							assertEquals(e.getRecord().name,"Groucho Marx");
+							assertEquals("Groucho Marx", e.getRecord().name);
 						}
 					}
 				}
 				);
-		try {
-			engine.writeFile(customerFile, customers);
-			customers = engine.readFile(customerFile);
-		} catch (IOException e) {
-		}
-		assertEquals(beforeReadCount,4);
-		assertEquals(afterReadCount,4);
-		assertEquals(customers.size(),4);
+		engine.writeFile(customerFile, customers);
+		customers = engine.readFile(customerFile);
+		assertEquals(4,beforeReadCount);
+		assertEquals(4,afterReadCount);
+		assertEquals(4,customers.size());
 	}
 
-	public void testBeforeReadSkip() {
+	public void testBeforeReadSkip() throws IOException {
 		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
 		fileEngine.setBeforeReadRecordHandler(
 				new BeforeReadRecordHandler<Customer>() {
@@ -84,15 +81,12 @@ public class EventsTest extends CallbacksBase {
 					}
 				}
 				);
-		try {
-			engine.writeFile(customerFile, customers);
-			customers = engine.readFile(customerFile);
-		} catch (IOException e) {
-		}
-		assertEquals(customers.size(),3);
+		engine.writeFile(customerFile, customers);
+		customers = engine.readFile(customerFile);		
+		assertEquals(3,customers.size());
 	}
 
-	public void testAfterRead() {
+	public void testAfterRead() throws IOException {
 		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
 		fileEngine.setAfterReadRecordHandler(
 				new AfterReadRecordHandler<Customer>() {
@@ -105,16 +99,13 @@ public class EventsTest extends CallbacksBase {
 					}
 				}
 				);
-		try {
-			engine.writeFile(customerFile, customers);
-			customers = engine.readFile(customerFile);
-		} catch (IOException e) {
-		}
-		assertEquals(afterReadCount,4);
-		assertEquals(customers.size(),4);
+		engine.writeFile(customerFile, customers);
+		customers = engine.readFile(customerFile);
+		assertEquals(4, afterReadCount);
+		assertEquals(4, customers.size());
 	}
 
-	public void testAfterReadSkipFirstElement() {
+	public void testAfterReadSkipFirstElement() throws IOException {
 		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
 		fileEngine.setAfterReadRecordHandler(
 				new AfterReadRecordHandler<Customer>() {
@@ -125,15 +116,12 @@ public class EventsTest extends CallbacksBase {
 					}
 				}
 				);
-		try {
-			engine.writeFile(customerFile, customers);
-			customers = engine.readFile(customerFile);
-		} catch (IOException e) {
-		}
+		engine.writeFile(customerFile, customers);
+		customers = engine.readFile(customerFile);
 		assertEquals(3, customers.size());
 	}
 	
-	public void testAfterReadSkipLastElement() {
+	public void testAfterReadSkipLastElement() throws IOException {
 		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
 		fileEngine.setAfterReadRecordHandler(
 				new AfterReadRecordHandler<Customer>() {
@@ -144,15 +132,12 @@ public class EventsTest extends CallbacksBase {
 					}
 				}
 				);
-		try {
-			engine.writeFile(customerFile, customers);
-			customers = engine.readFile(customerFile);
-		} catch (IOException e) {
-		}
+		engine.writeFile(customerFile, customers);
+		customers = engine.readFile(customerFile);
 		assertEquals(3, customers.size());
 	}
 
-	public void testWriteRecord() {
+	public void testWriteRecord() throws IOException {
 		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
 		fileEngine.setBeforeWriteRecordHandler(
 				new BeforeWriteRecordHandler<Customer>() {
@@ -171,22 +156,19 @@ public class EventsTest extends CallbacksBase {
 						engineTester(engine);
 						incrementAfterWriteCount();
 						if(e.getLineNumber() == 2) {
-							assertEquals(e.getRecordLine(),"2,Groucho Marx,2");
+							assertEquals("2,Groucho Marx,2", e.getRecordLine());
 						}
 					}
 				}
 				);
-		try {
-			engine.writeFile(customerFile, customers);
-			customers = engine.readFile(customerFile);
-		} catch (IOException e) {
-		}
-		assertEquals(beforeWriteCount,4);
-		assertEquals(afterWriteCount,4);
-		assertEquals(customers.size(),4);
+		engine.writeFile(customerFile, customers);
+		customers = engine.readFile(customerFile);
+		assertEquals(4, beforeWriteCount);
+		assertEquals(4, afterWriteCount);
+		assertEquals(4, customers.size());
 	}
 
-	public void testBeforeWriteSkip() {
+	public void testBeforeWriteSkip() throws IOException {
 		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
 		fileEngine.setBeforeWriteRecordHandler(
 				new BeforeWriteRecordHandler<Customer>() {
@@ -197,12 +179,8 @@ public class EventsTest extends CallbacksBase {
 					}
 				}
 				);
-		try {
-			engine.writeFile(customerFile, customers);
-			customers = engine.readFile(customerFile);
-		} catch (IOException e) {
-		}
-		assertEquals(customers.size(),3);
+		engine.writeFile(customerFile, customers);
+		customers = engine.readFile(customerFile);
+		assertEquals(3, customers.size());
 	}
-
 }
