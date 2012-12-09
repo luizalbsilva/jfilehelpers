@@ -130,7 +130,7 @@ public class EventsTest extends CallbacksBase {
 			customers = engine.readFile(customerFile);
 		} catch (IOException e) {
 		}
-		assertEquals(customers.size(),3);
+		assertEquals(3, customers.size());
 	}
 
 	public void testWriteRecord() {

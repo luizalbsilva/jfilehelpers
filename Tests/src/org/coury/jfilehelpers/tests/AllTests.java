@@ -25,6 +25,7 @@ import org.coury.jfilehelpers.tests.callbacks.ProgressTest;
 import org.coury.jfilehelpers.tests.converters.DateFormatTest;
 import org.coury.jfilehelpers.tests.converters.DecimalNumbersTest;
 import org.coury.jfilehelpers.tests.converters.EnumConverterTest;
+import org.coury.jfilehelpers.tests.masterdetail.MasterDetail2Test;
 import org.coury.jfilehelpers.tests.masterdetail.MasterDetailTest;
 
 import junit.framework.Test;
@@ -40,6 +41,7 @@ public class AllTests {
 		suite.addTestSuite(DateFormatTest.class);
 		suite.addTestSuite(DecimalNumbersTest.class);
 		suite.addTestSuite(MasterDetailTest.class);
+		suite.addTestSuite(MasterDetail2Test.class);
 		suite.addTestSuite(NotifiersTest.class);
 		suite.addTestSuite(EventsTest.class);
 		suite.addTestSuite(ProgressTest.class);

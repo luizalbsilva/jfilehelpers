@@ -362,12 +362,12 @@ public class FileHelperEngine<T> extends EngineBase<T> implements Iterable<T> {
 			@Override
 			public T next() {
 		        T record = null;
+		        boolean skip = false;
 		        if (currentLine != null && currentRecord < maxRecords) {
 		            try {
 		                totalRecords++;
 		                currentRecord++;
 		                line.reload(currentLine);
-		                boolean skip = false;
 		                ProgressHelper.notify(notifyHandler, progressMode, currentRecord, -1);
 		                BeforeReadRecordEventArgs<T> e = new BeforeReadRecordEventArgs<T>(currentLine, lineNumber);
 		                skip = onBeforeReadRecord(e);
@@ -385,7 +385,7 @@ public class FileHelperEngine<T> extends EngineBase<T> implements Iterable<T> {
 		                throw new Error(ex);
 		            }
 		        }
-		        return record;
+		        return skip?next():record;
 			}
 
 			@Override
