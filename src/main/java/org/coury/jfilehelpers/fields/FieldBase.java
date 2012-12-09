@@ -1,7 +1,7 @@
 /*
  * FieldBase.java
  *
- * Copyright (C) 2007 Felipe Gonçalves Coury <felipe.coury@gmail.com>
+ * Copyright (C) 2007 Felipe Gonï¿½alves Coury <felipe.coury@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -203,7 +203,7 @@ public abstract class FieldBase {
         return val;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private Object changeType(String s, Field fieldInfo) {
 		if (fieldInfo.getType().getName().equals("int")) {
 			return Integer.parseInt(s);

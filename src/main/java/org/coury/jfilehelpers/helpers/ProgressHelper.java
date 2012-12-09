@@ -26,10 +26,9 @@ import org.coury.jfilehelpers.progress.ProgressEventArgs;
 
 /**
  * @author Robert Eccardt
- * 
  */
 public class ProgressHelper {
-	public static void notify(ProgressChangeHandler handler, ProgressMode mode,	int current, int total) {
+	public static void notify(ProgressChangeHandler handler, ProgressMode mode, int current, int total) {
 		if (handler == null)
 			return;
 
@@ -38,18 +37,24 @@ public class ProgressHelper {
 
 		switch (mode) {
 		case NotifyBytes:
-			handler.handleProgressChange(new ProgressEventArgs(mode, current, total));
+			handler.handleProgressChange(new ProgressEventArgs(mode, current,
+					total));
 			break;
 
 		case NotifyRecords:
-			handler.handleProgressChange(new ProgressEventArgs(mode, current, total));
+			handler.handleProgressChange(new ProgressEventArgs(mode, current,
+					total));
 			break;
 
 		case NotifyPercent:
 			if (total == -1)
 				return;
-			handler.handleProgressChange(new ProgressEventArgs(mode, (int) (current * 100 / total), 100));
+			handler.handleProgressChange(new ProgressEventArgs(mode,
+					(int) (current * 100 / total), 100));
 			break;
+
+		default:
+			return;
 		}
 	}
 }

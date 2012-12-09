@@ -203,7 +203,7 @@ public class MasterDetailEngine<MT, DT> extends EngineBase<DT> {
 
 		totalRecords = records.size();
 
-		if (getFooterText() != null && getFooterText() != "") {
+		if (getFooterText() != null && (!"".equals(getFooterText()))) {
 			writer.write(getFooterText());
 			if (!getFooterText().endsWith(StringHelper.NEW_LINE)) {
 				writer.write(StringHelper.NEW_LINE);

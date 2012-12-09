@@ -267,9 +267,9 @@ public final class RecordInfo<T> {
 		case IncludeIfMatchRegex:
 			return !Pattern.matches(conditionRegEx, line);
 			
+		default:
+			return false;
 		}
-		
-		return false;
 	}
 
 	/**
@@ -358,8 +358,7 @@ public final class RecordInfo<T> {
 	 * @param recordClass the record class
 	 * @return an array of FieldBase, field descriptor objects
 	 */
-	@SuppressWarnings("unchecked")
-	private static FieldBase[] createCoreFields(Field[] fields, Class recordClass) {
+	private static FieldBase[] createCoreFields(Field[] fields, Class<?> recordClass) {
 		FieldBase field;
 		List<FieldBase> fieldArr = new ArrayList<FieldBase>();
 		

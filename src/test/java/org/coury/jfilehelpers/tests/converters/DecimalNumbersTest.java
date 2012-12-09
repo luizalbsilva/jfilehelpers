@@ -1,7 +1,7 @@
 /*
  * DecimalNumbersTest.java
  *
- * Copyright (C) 2007 Felipe Gonçalves Coury <felipe.coury@gmail.com>
+ * Copyright (C) 2007 Felipe Gonï¿½alves Coury <felipe.coury@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -31,8 +31,7 @@ import org.coury.jfilehelpers.tests.common.Common;
 import org.coury.jfilehelpers.tests.converters.testobjects.DecimalType;
 
 public class DecimalNumbersTest extends TestCase {
-	@SuppressWarnings("unchecked")
-	FileHelperEngine engine;
+	FileHelperEngine<?> engine;
 
 	@SuppressWarnings("unchecked")
 	public void testDecimals1() throws IOException {

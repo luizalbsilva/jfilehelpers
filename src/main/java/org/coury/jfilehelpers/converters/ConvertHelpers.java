@@ -1,7 +1,7 @@
 /*
  * ConverterBase.java
  *
- * Copyright (C) 2007 Felipe Gonçalves Coury <felipe.coury@gmail.com>
+ * Copyright (C) 2007 Felipe Gonï¿½alves Coury <felipe.coury@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -49,8 +49,9 @@ public class ConvertHelpers {
 //		case Double:
 //			return new ConvertHelpers().new DoubleConverter();
 			
+			default: 
+				return null;
 		}
-		return null;
 	}
 	
 	public static ConverterBase getDefaultConverter(Field field) {
