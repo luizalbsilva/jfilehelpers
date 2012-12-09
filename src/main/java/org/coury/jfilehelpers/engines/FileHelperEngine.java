@@ -358,15 +358,13 @@ public class FileHelperEngine<T> extends EngineBase<T> implements Iterable<T> {
         	
 			@Override
 			public boolean hasNext() {
-				while ( (! dataLoaded ) && ((currentLine != null)) ){
-					loadData();
-				}
-		        return dataLoaded;
+		        return loadData();
 			}
 
-			private void loadData() {
+			private boolean loadData() {
 		        boolean skip = false;
-		        if (currentLine != null && currentRecord < maxRecords) {
+		        dataLoaded = false;
+		        while ( (! dataLoaded) && ( currentLine != null ) && (currentRecord < maxRecords)) {
 		            try {
 		                totalRecords++;
 		                currentRecord++;
@@ -380,8 +378,9 @@ public class FileHelperEngine<T> extends EngineBase<T> implements Iterable<T> {
 		                if (!skip) {
 		                    this.data = recordInfo.strToRecord(line);
 		                    skip = onAfterReadRecord(currentLine, this.data);
-		                    if (! skip)
-		                    	dataLoaded=true;
+		                    if (! skip) {
+		                    	dataLoaded = true;
+		                    }
 		                }
 		                currentLine = freader.readNextLine();
 		                completeLine = currentLine;
@@ -390,6 +389,7 @@ public class FileHelperEngine<T> extends EngineBase<T> implements Iterable<T> {
 		                throw new Error(ex);
 		            }
 		        }
+		        return dataLoaded;
 			}
 
 			@Override

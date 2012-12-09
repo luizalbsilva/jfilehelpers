@@ -1,7 +1,7 @@
 /*
  * FieldFactory.java
  *
- * Copyright (C) 2007 Felipe Gonçalves Coury <felipe.coury@gmail.com>
+ * Copyright (C) 2007 Felipe Gonï¿½alves Coury <felipe.coury@gmail.com>
  * 
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -39,8 +39,7 @@ public class FieldFactory {
 	 * @param someOptional indicates whether some of the fields on the collection are optional
 	 * @return a FieldBase instance with informations from the field acquired by reflection 
 	 */
-	@SuppressWarnings("unchecked")
-	public static FieldBase createField(Field fi, Class recordClass, boolean someOptional) {
+	public static FieldBase createField(Field fi, Class<?> recordClass, boolean someOptional) {
 		if (fi.isAnnotationPresent(FieldIgnored.class)) {
 			return null;
 		}
