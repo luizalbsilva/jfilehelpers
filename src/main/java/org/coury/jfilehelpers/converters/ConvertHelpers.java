@@ -198,7 +198,7 @@ public class ConvertHelpers {
 			if (from != null) {
 				from = from.trim();
 			}
-			return Integer.parseInt(from);
+			return (from == null)||("".equals(from))?null:Integer.parseInt(from);
 		}
 		
 		@Override
