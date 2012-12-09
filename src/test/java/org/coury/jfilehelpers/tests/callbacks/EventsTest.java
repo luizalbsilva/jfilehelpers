@@ -114,12 +114,31 @@ public class EventsTest extends CallbacksBase {
 		assertEquals(customers.size(),4);
 	}
 
-	public void testAfterReadSkip() {
+	public void testAfterReadSkipFirstElement() {
 		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
 		fileEngine.setAfterReadRecordHandler(
 				new AfterReadRecordHandler<Customer>() {
 					public void handleAfterReadRecord(EngineBase<Customer> engine, AfterReadRecordEventArgs<Customer> e) {
 						if(e.getLineNumber() == 1) {
+							e.setSkipThisRecord(true);
+						}
+					}
+				}
+				);
+		try {
+			engine.writeFile(customerFile, customers);
+			customers = engine.readFile(customerFile);
+		} catch (IOException e) {
+		}
+		assertEquals(3, customers.size());
+	}
+	
+	public void testAfterReadSkipLastElement() {
+		FileHelperEngine<Customer> fileEngine = (FileHelperEngine<Customer>) engine;
+		fileEngine.setAfterReadRecordHandler(
+				new AfterReadRecordHandler<Customer>() {
+					public void handleAfterReadRecord(EngineBase<Customer> engine, AfterReadRecordEventArgs<Customer> e) {
+						if(e.getLineNumber() == 4) {
 							e.setSkipThisRecord(true);
 						}
 					}
